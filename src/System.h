@@ -5,6 +5,7 @@ class System {
 public:
     int WIDTH, HEIGHT;
     bool running;
+    int x, y;
 
     SDL_Surface* backbuffer;
     SDL_Window* window;
@@ -15,6 +16,7 @@ public:
     ~System();
 
     void Startup();
-    void Render(std::vector<Board> b);
+    void Render(std::vector<Board> b, std::vector<Pawn> p);
     void HandleInput();
+
 };
