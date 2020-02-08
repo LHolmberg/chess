@@ -1,5 +1,4 @@
 #todo
 
-map (8x8)
 move
 rules

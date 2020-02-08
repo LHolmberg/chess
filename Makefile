@@ -1,2 +1,2 @@
 chess:
-	g++ -o chess Source.cpp Board.cpp System.cpp -lSDL2 -lSDL2_image
+	g++ -o chess src/Source.cpp src/Board.cpp src/System.cpp -lSDL2 -lSDL2_image
