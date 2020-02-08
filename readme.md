@@ -1,5 +1,5 @@
 # todo
-Movement:
+# Movement:
     Current: can half select
     Todo with it:
     if select:
@@ -10,3 +10,8 @@ Movement:
         move:
     else not a move chioice:
         alert user
+
+# general
+class Piece
+class King : Piece
+.........
