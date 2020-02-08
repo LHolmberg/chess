@@ -3,18 +3,19 @@
 #include <iostream>
 #include <vector>
 
+const int h = 1000, w = 1000;
 
 class Board {
 public:
     SDL_Texture *sprite;
     SDL_Rect square;
 
-    Board(int w, int h, int x, int y, SDL_Renderer *renderer) {
+    Board(int w, int h, int x, int y, const char* filename, SDL_Renderer *renderer) {
         this->square.w = w;
         this->square.h = h;
         this->square.x = x;
         this->square.y = y;
-        this->sprite = IMG_LoadTexture(renderer, "brown.jpeg");
+        this->sprite = IMG_LoadTexture(renderer, filename);
     }
 };
 
@@ -47,9 +48,10 @@ public:
         this->backbuffer = SDL_GetWindowSurface(this->window);
     }
 
-    void Render(Board b) {
+    void Render(std::vector<Board> b) {
         SDL_RenderClear(this->renderer);
-        SDL_RenderCopy(this->renderer, b.sprite, NULL, &b.square);
+        for(int i = 0; i < b.size(); i++)
+            SDL_RenderCopy(this->renderer, b[i].sprite, NULL, &b[i].square);
         SDL_RenderPresent(this->renderer);
     }
    
@@ -71,17 +73,43 @@ public:
 };
 
 int main(void) {
-    std::vector<Board> board;
+
     System sys(1000,1000);
     sys.Startup();
-    Board b(40,40,0,0, sys.renderer);
+
+    std::vector<Board> board;
+
+    int xpos = 0, ypos = 0;
+    for(int j = 0; j < 8; j++)
+    {
+        for(int i = 0; i < 8; i++)
+        {
+            if(j % 2 != 0)
+            {
+                if(i % 2 == 0)
+                    board.push_back(Board(w/8,h/8,xpos,ypos,"assets/beige.png", sys.renderer));
+                else
+                    board.push_back(Board(w/8,h/8,xpos,ypos,"assets/brown.jpeg", sys.renderer));
+            }
+            else {
+                if(i % 2 != 0)
+                    board.push_back(Board(w/8,h/8,xpos,ypos,"assets/beige.png", sys.renderer));
+                else
+                    board.push_back(Board(w/8,h/8,xpos,ypos,"assets/brown.jpeg", sys.renderer));
+            }
+            xpos += h/8;
+        }
+        xpos = 0;
+        ypos += h/8;
+    }
 
     while(sys.running == true)
     {
-        sys.Render(b);
+        sys.Render(board);
         SDL_UpdateWindowSurface(sys.window);
         sys.HandleInput();
     }
+    
     sys.~System();
     return 0;
 }
