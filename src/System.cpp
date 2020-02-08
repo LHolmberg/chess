@@ -1,4 +1,5 @@
 #include "System.h"
+#include <iostream>
 
 System::System(int WIDTH, int HEIGHT) {
     this->WIDTH = WIDTH;
@@ -28,18 +29,22 @@ void System::Render(std::vector<Board> b, std::vector<Pawn> p) {
     SDL_RenderPresent(this->renderer);
 }
 
-void System::HandleInput() {
+void System::SelectPiece(std::vector<Pawn> p) {
     SDL_PumpEvents();
     const Uint8* keystate = SDL_GetKeyboardState(NULL);
-
+    int x, y;
     while(SDL_PollEvent(&this->event))
     {
-        if(keystate[SDL_SCANCODE_ESCAPE]) {
-            this->running = false;
-        }
-        if(keystate[SDL_SCANCODE_W])
+        SDL_GetMouseState(&x,&y);
+        if(this->event.type == SDL_MOUSEBUTTONDOWN)
         {
-            printf("W");
+            for(int i = 0; i < p.size(); i++)
+            {
+                if(x >= p[i].square.x && x <= p[i].square.x + p[i].square.w && y >= p[i].square.y && y <= p[i].square.y + p[i].square.h)
+                {
+                    SDL_DestroyTexture(p[i].sprite); // select piece
+                }
+            }
         }
         if(this->event.type == SDL_QUIT)
         {

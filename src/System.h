@@ -17,6 +17,6 @@ public:
 
     void Startup();
     void Render(std::vector<Board> b, std::vector<Pawn> p);
-    void HandleInput();
+    void SelectPiece(std::vector<Pawn> p);
 
 };

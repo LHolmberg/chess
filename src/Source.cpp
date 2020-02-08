@@ -38,7 +38,7 @@ int main() {
     }
 
     
-
+    //Setup pawns
     for(int i = 0; i < 8; i++)
     {
         pawns.push_back(Pawn(W/8, H/8,mapgrid[i][i].first,mapgrid[1][1].second,"assets/pawn.png", sys.renderer));
@@ -77,7 +77,7 @@ int main() {
     {
         sys.Render(board, pawns);
         SDL_UpdateWindowSurface(sys.window);
-        sys.HandleInput();
+        sys.SelectPiece(pawns);
     }
 
     sys.~System();
