@@ -1,5 +1,5 @@
 #include "Board.h"
-#include "Piece.h"
+#include "Pieces.h"
 #include <vector>
 
 class System {
@@ -16,6 +16,6 @@ public:
     ~System();
 
     void Startup();
-    void Render(std::vector<Board> b, std::vector<Pawn> p);
+    void Render(std::vector<Board> b, std::vector<Piece*> p);
 
 };
