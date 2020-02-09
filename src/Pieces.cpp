@@ -17,12 +17,13 @@ std::pair<int,int> GetCurrentPosition(std::pair<int,int> mapgrid[8][8], int x, i
     return std::make_pair(n,k);
 }
 
-Piece::Piece(int w, int h, int x, int y, const char* filename, SDL_Renderer *renderer) {
-        this->square.w = w;
-        this->square.h = h;
+Piece::Piece(int x, int y, const char* filename, SDL_Renderer *renderer, std::string team) {
+        this->square.w = W/8;
+        this->square.h = H/8;
         this->square.x = x;
         this->square.y = y;
         this->sprite = IMG_LoadTexture(renderer, filename); 
+        this->team = team;
 }
 
 void Piece::ChangePosition(int x, int y) {
@@ -115,4 +116,28 @@ bool Bishop::PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> n
 
 std::string Bishop::name() const {
     return "Bishop";
+}
+
+bool Pawn::PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos) {
+    int x = square.x;
+    int y = square.y;
+
+    std::pair<int,int> curPos = GetCurrentPosition(mapgrid, x, y);
+    int n = curPos.first, k = curPos.second;
+
+    if(this->team == "BLACK") {
+        if(newPos.second == mapgrid[n-1][k].second)
+            return true;
+        else
+           return false;
+    } else {
+        if(newPos.second == mapgrid[n+1][k].second)
+            return true;
+        else
+           return false;
+    }
+}
+
+std::string Pawn::name() const {
+    return "Pawn";
 }

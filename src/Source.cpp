@@ -3,12 +3,11 @@
 #include <vector>
 #include <string>
 
-const int H = 600, W = 600;
 std::pair<int,int> mapgrid[8][8];
-
 std::vector<Board> board;
 std::vector<Piece*> pieces;
-System sys(600,600);
+
+System sys(W,H);
 
 std::pair<int,int> ChangePosTo(int x, int y);
 void SetupMap();
@@ -118,57 +117,45 @@ void SetupMap() {
         ypos += W/8;
     }
 }
-
+//TODO : fixa andra icons till team white
 void SetupPieces() {
-    //Setup pieces
     //PAWNS
     for(int i = 0; i < 8; i++) { 
-        //white
-        //pieces.push_back(new Rook(W/8, H/8,mapgrid[i][i].first,mapgrid[1][1].second,"assets/pawn.png", sys.renderer));
-        
-         //black
-         //pieces.push_back(new Rook(W/8, H/8,mapgrid[i][i].first,mapgrid[6][6].second,"assets/pawn2.png", sys.renderer));
+        pieces.push_back(new Pawn(mapgrid[i][i].first,mapgrid[1][1].second,"assets/pawn.png", sys.renderer, "WHITE"));
+        pieces.push_back(new Pawn(mapgrid[i][i].first,mapgrid[6][6].second,"assets/pawn2.png", sys.renderer, "BLACK"));
     }
-
-    //TODO : fixa andra icons till team white
     
     //Setup rooks
-    // Black
-    pieces.push_back(new Rook(W/8, H/8,mapgrid[0][0].first,mapgrid[7][7].second,"assets/rook2.png", sys.renderer));
-    pieces.push_back(new Rook(W/8, H/8,mapgrid[7][7].first,mapgrid[7][7].second,"assets/rook2.png", sys.renderer));
+    pieces.push_back(new Rook(mapgrid[0][0].first,mapgrid[7][7].second,"assets/rook2.png", sys.renderer, "BLACK"));
+    pieces.push_back(new Rook(mapgrid[7][7].first,mapgrid[7][7].second,"assets/rook2.png", sys.renderer, "BLACK"));
 
-    //white
-    pieces.push_back(new Rook(W/8, H/8,mapgrid[0][0].first,mapgrid[0][0].second,"assets/rook2.png", sys.renderer));
-    pieces.push_back(new Rook(W/8, H/8,mapgrid[7][7].first,mapgrid[0][0].second,"assets/rook2.png", sys.renderer));
+    pieces.push_back(new Rook(mapgrid[0][0].first,mapgrid[0][0].second,"assets/rook2.png", sys.renderer, "WHITE"));
+    pieces.push_back(new Rook(mapgrid[7][7].first,mapgrid[0][0].second,"assets/rook2.png", sys.renderer, "WHITE"));
 
 
     // Setup knights
     // Black
-    // pieces.push_back(Piece(W/8, H/8,mapgrid[1][1].first,mapgrid[7][7].second,"assets/knight2.png", sys.renderer));
-    // pieces.push_back(Piece(W/8, H/8,mapgrid[6][6].first,mapgrid[7][7].second,"assets/knight2.png", sys.renderer));
+    // pieces.push_back(Piece(mapgrid[1][1].first,mapgrid[7][7].second,"assets/knight2.png", sys.renderer));
+    // pieces.push_back(Piece(mapgrid[6][6].first,mapgrid[7][7].second,"assets/knight2.png", sys.renderer));
     
     //White
-    // pieces.push_back(Piece(W/8, H/8,mapgrid[1][1].first,mapgrid[7][7].second,"assets/knight2.png", sys.renderer));
-    // pieces.push_back(Piece(W/8, H/8,mapgrid[6][6].first,mapgrid[7][7].second,"assets/knight2.png", sys.renderer));
+    // pieces.push_back(Piece(mapgrid[1][1].first,mapgrid[7][7].second,"assets/knight2.png", sys.renderer));
+    // pieces.push_back(Piece(mapgrid[6][6].first,mapgrid[7][7].second,"assets/knight2.png", sys.renderer));
 
 
     // Setup queens and kings
-    // Black
-    pieces.push_back(new Queen(W/8, H/8,mapgrid[4][4].first,mapgrid[7][7].second,"assets/queen2.png", sys.renderer));
-    pieces.push_back(new King(W/8, H/8,mapgrid[3][3].first,mapgrid[7][7].second,"assets/king2.png", sys.renderer));
+    pieces.push_back(new Queen(mapgrid[4][4].first,mapgrid[7][7].second,"assets/queen2.png", sys.renderer, "BLACK"));
+    pieces.push_back(new King(mapgrid[3][3].first,mapgrid[7][7].second,"assets/king2.png", sys.renderer, "BLACK"));
 
-    // White
-    pieces.push_back(new Queen(W/8, H/8,mapgrid[4][4].first,mapgrid[0][0].second,"assets/queen2.png", sys.renderer));
-    pieces.push_back(new King(W/8, H/8,mapgrid[3][3].first,mapgrid[0][0].second,"assets/king2.png", sys.renderer));
+    pieces.push_back(new Queen(mapgrid[4][4].first,mapgrid[0][0].second,"assets/queen2.png", sys.renderer, "WHITE"));
+    pieces.push_back(new King(mapgrid[3][3].first,mapgrid[0][0].second,"assets/king2.png", sys.renderer, "WHITE"));
 
     // Setup bishops
-    // Black
-    pieces.push_back(new Bishop(W/8, H/8,mapgrid[2][2].first,mapgrid[7][7].second,"assets/bishop2.png", sys.renderer));
-    pieces.push_back(new Bishop(W/8, H/8,mapgrid[5][5].first,mapgrid[7][7].second,"assets/bishop2.png", sys.renderer));
+    pieces.push_back(new Bishop(mapgrid[2][2].first,mapgrid[7][7].second,"assets/bishop2.png", sys.renderer, "BLACK"));
+    pieces.push_back(new Bishop(mapgrid[5][5].first,mapgrid[7][7].second,"assets/bishop2.png", sys.renderer, "BLACK"));
 
-    // White
-    pieces.push_back(new Bishop(W/8, H/8,mapgrid[2][2].first,mapgrid[0][0].second,"assets/bishop2.png", sys.renderer));
-    pieces.push_back(new Bishop(W/8, H/8,mapgrid[5][5].first,mapgrid[0][0].second,"assets/bishop2.png", sys.renderer));
+    pieces.push_back(new Bishop(mapgrid[2][2].first,mapgrid[0][0].second,"assets/bishop2.png", sys.renderer, "WHITE"));
+    pieces.push_back(new Bishop(mapgrid[5][5].first,mapgrid[0][0].second,"assets/bishop2.png", sys.renderer, "WHITE"));
 }
 
 
