@@ -1,6 +1,6 @@
 # ChessAI
 
-A chess program, you vs ai.
+A chess game, you vs ai.
 
 # TODO
 # Movement:
