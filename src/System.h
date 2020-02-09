@@ -1,4 +1,5 @@
 #include "Board.h"
+#include "Piece.h"
 #include <vector>
 
 class System {
@@ -10,13 +11,11 @@ public:
     SDL_Surface* backbuffer;
     SDL_Window* window;
     SDL_Renderer* renderer;
-    SDL_Event event;
 
     System(int WIDTH, int HEIGHT);
     ~System();
 
     void Startup();
     void Render(std::vector<Board> b, std::vector<Pawn> p);
-    void SelectPiece(std::vector<Pawn> p);
 
 };
