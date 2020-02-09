@@ -55,17 +55,16 @@ bool Queen::PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> ne
     std::pair<int,int> curPos = GetCurrentPosition(mapgrid, x, y);
     int n = curPos.first, k = curPos.second;
 
-    int dx,dy;
-    dy = abs(newPos.second - mapgrid[n][k].second);
-    dx = abs(newPos.first - mapgrid[n][k].first);
+    int dy = abs(newPos.second - mapgrid[n][k].second);
+    int dx = abs(newPos.first - mapgrid[n][k].first);
 
     //any diagonal and straight up/down/sidetoside = OK
     for(int i = 0; i < 8; i++) {
         if(newPos.second == mapgrid[n][k].second || newPos.first == mapgrid[n][k].first
-        || newPos.second == mapgrid[i][k].second && dx == dy
-        || newPos.second == mapgrid[i][k].second && dx == dy
-        || newPos.first == mapgrid[n][i].first && dx == dy
-        || newPos.first == mapgrid[n][i].first && dx == dy)
+            || newPos.second == mapgrid[i][k].second && dx == dy
+                || newPos.second == mapgrid[i][k].second && dx == dy
+                    || newPos.first == mapgrid[n][i].first && dx == dy
+                        || newPos.first == mapgrid[n][i].first && dx == dy)
             return true;
 
     }
@@ -91,4 +90,29 @@ bool Rook::PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> new
 
 std::string Rook::name() const {
     return "Rook";
+}
+
+bool Bishop::PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos) {
+    int x = square.x;
+    int y = square.y;
+
+    std::pair<int,int> curPos = GetCurrentPosition(mapgrid, x, y);
+    int n = curPos.first, k = curPos.second;
+
+    int dy = abs(newPos.second - mapgrid[n][k].second);
+    int dx = abs(newPos.first - mapgrid[n][k].first);
+    
+    for(int i = 0; i < 8; i++) {
+    if(newPos.second == mapgrid[i][k].second && dx == dy 
+        || newPos.second == mapgrid[i][k].second && dx == dy
+            || newPos.first == mapgrid[n][i].first && dx == dy
+                || newPos.first == mapgrid[n][i].first && dx == dy)
+        return true;
+    }
+    
+    return false;
+}
+
+std::string Bishop::name() const {
+    return "Bishop";
 }

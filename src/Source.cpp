@@ -163,12 +163,12 @@ void SetupPieces() {
 
     // Setup bishops
     // Black
-    // pieces.push_back(Piece(W/8, H/8,mapgrid[2][2].first,mapgrid[7][7].second,"assets/bishop2.png", sys.renderer));
-    // pieces.push_back(Piece(W/8, H/8,mapgrid[5][5].first,mapgrid[7][7].second,"assets/bishop2.png", sys.renderer));
+    pieces.push_back(new Bishop(W/8, H/8,mapgrid[2][2].first,mapgrid[7][7].second,"assets/bishop2.png", sys.renderer));
+    pieces.push_back(new Bishop(W/8, H/8,mapgrid[5][5].first,mapgrid[7][7].second,"assets/bishop2.png", sys.renderer));
 
     // White
-    // pieces.push_back(Piece(W/8, H/8,mapgrid[2][2].first,mapgrid[0][0].second,"assets/bishop2.png", sys.renderer));
-    // pieces.push_back(Piece(W/8, H/8,mapgrid[5][5].first,mapgrid[0][0].second,"assets/bishop2.png", sys.renderer));
+    pieces.push_back(new Bishop(W/8, H/8,mapgrid[2][2].first,mapgrid[0][0].second,"assets/bishop2.png", sys.renderer));
+    pieces.push_back(new Bishop(W/8, H/8,mapgrid[5][5].first,mapgrid[0][0].second,"assets/bishop2.png", sys.renderer));
 }
 
 

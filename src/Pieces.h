@@ -42,4 +42,13 @@ public:
     virtual std::string name() const;
 };
 
+class Bishop : public Piece {
+public:
+    Bishop(int w, int h, int x, int y, const char* filename, SDL_Renderer *renderer)
+     : Piece(w,h,x,y,filename,renderer) { }
+
+    virtual bool PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos);
+    virtual std::string name() const;
+};
+
 
