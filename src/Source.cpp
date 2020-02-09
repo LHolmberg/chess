@@ -154,11 +154,11 @@ void SetupPieces() {
 
     // Setup queens and kings
     // Black
-    // pieces.push_back(Piece(W/8, H/8,mapgrid[4][4].first,mapgrid[7][7].second,"assets/queen2.png", sys.renderer));
+    pieces.push_back(new Queen(W/8, H/8,mapgrid[4][4].first,mapgrid[7][7].second,"assets/queen2.png", sys.renderer));
     pieces.push_back(new King(W/8, H/8,mapgrid[3][3].first,mapgrid[7][7].second,"assets/king2.png", sys.renderer));
 
     // White
-    // pieces.push_back(Piece(W/8, H/8,mapgrid[4][4].first,mapgrid[0][0].second,"assets/queen2.png", sys.renderer));
+    pieces.push_back(new Queen(W/8, H/8,mapgrid[4][4].first,mapgrid[0][0].second,"assets/queen2.png", sys.renderer));
     pieces.push_back(new King(W/8, H/8,mapgrid[3][3].first,mapgrid[0][0].second,"assets/king2.png", sys.renderer));
 
     // Setup bishops
