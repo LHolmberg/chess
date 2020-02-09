@@ -153,7 +153,7 @@ void SetupPieces() {
 
     // //Setup queens and kings
     // pieces.push_back(Piece(W/8, H/8,mapgrid[4][4].first,mapgrid[7][7].second,"assets/queen2.png", sys.renderer));
-    // pieces.push_back(Piece(W/8, H/8,mapgrid[3][3].first,mapgrid[7][7].second,"assets/king2.png", sys.renderer));
+     pieces.push_back(new King(W/8, H/8,mapgrid[3][3].first,mapgrid[7][7].second,"assets/king2.png", sys.renderer));
 
     // //Setup bishops
     // pieces.push_back(Piece(W/8, H/8,mapgrid[2][2].first,mapgrid[7][7].second,"assets/bishop2.png", sys.renderer));
