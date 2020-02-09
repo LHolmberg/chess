@@ -1,3 +1,7 @@
+# ChessAI
+
+A chess program, you vs ai.
+
 # TODO
 # Movement:
     Todo:
