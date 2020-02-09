@@ -16,3 +16,5 @@
     class King : Piece
     .........
     (class for every piece)
+    
+    cleanup source file
