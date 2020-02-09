@@ -141,3 +141,20 @@ bool Pawn::PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> new
 std::string Pawn::name() const {
     return "Pawn";
 }
+
+bool Knight::PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos) {
+    int x = square.x;
+    int y = square.y;
+
+    std::pair<int,int> curPos = GetCurrentPosition(mapgrid, x, y);
+    int n = curPos.first, k = curPos.second;
+
+    if(newPos.first == mapgrid[n][k+2].first || newPos.first == mapgrid[n][k-2].first)
+        return true;
+    else
+        return false;
+}
+
+std::string Knight::name() const {
+    return "Knight";
+}

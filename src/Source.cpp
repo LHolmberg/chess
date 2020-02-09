@@ -134,14 +134,11 @@ void SetupPieces() {
 
 
     // Setup knights
-    // Black
-    // pieces.push_back(Piece(mapgrid[1][1].first,mapgrid[7][7].second,"assets/knight2.png", sys.renderer));
-    // pieces.push_back(Piece(mapgrid[6][6].first,mapgrid[7][7].second,"assets/knight2.png", sys.renderer));
+    pieces.push_back(new Knight(mapgrid[1][1].first,mapgrid[7][7].second,"assets/knight2.png", sys.renderer, "BLACK"));
+    pieces.push_back(new Knight(mapgrid[6][6].first,mapgrid[7][7].second,"assets/knight2.png", sys.renderer, "BLACK"));
     
-    //White
-    // pieces.push_back(Piece(mapgrid[1][1].first,mapgrid[7][7].second,"assets/knight2.png", sys.renderer));
-    // pieces.push_back(Piece(mapgrid[6][6].first,mapgrid[7][7].second,"assets/knight2.png", sys.renderer));
-
+    pieces.push_back(new Knight(mapgrid[1][1].first,mapgrid[0][0].second,"assets/knight2.png", sys.renderer, "WHITE"));
+    pieces.push_back(new Knight(mapgrid[6][6].first,mapgrid[0][0].second,"assets/knight2.png", sys.renderer, "WHITE"));
 
     // Setup queens and kings
     pieces.push_back(new Queen(mapgrid[4][4].first,mapgrid[7][7].second,"assets/queen2.png", sys.renderer, "BLACK"));
