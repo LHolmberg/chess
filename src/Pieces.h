@@ -2,6 +2,7 @@
 #include <SDL2/SDL_image.h>
 #include <string>
 #include <iostream>
+#include <vector>
 
 const int W = 600, H = 600; //SCREEN
 
@@ -14,7 +15,8 @@ public:
     void ChangePosition(int x, int y);
     Piece(int x, int y, const char* filename, SDL_Renderer *renderer, std::string team);
     
-    virtual bool PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos) = 0;
+    virtual bool PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos,
+            std::vector<Piece*> pieces) = 0;
     virtual std::string name() const = 0;
 };
 
@@ -23,7 +25,7 @@ public:
     King(int x, int y, const char* filename, SDL_Renderer *renderer, std::string team)
      : Piece(x,y,filename,renderer, team) { }
 
-    virtual bool PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos);
+    virtual bool PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos, std::vector<Piece*> pieces);
     virtual std::string name() const;
 };
 
@@ -32,7 +34,7 @@ public:
     Queen(int x, int y, const char* filename, SDL_Renderer *renderer, std::string team)
      : Piece(x,y,filename,renderer, team) { }
     
-    virtual bool PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos);
+    virtual bool PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos, std::vector<Piece*> pieces);
     virtual std::string name() const;
 };
 
@@ -41,7 +43,7 @@ public:
     Rook(int x, int y, const char* filename, SDL_Renderer *renderer, std::string team)
      : Piece(x,y,filename,renderer, team) { }
 
-    virtual bool PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos);
+    virtual bool PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos, std::vector<Piece*> pieces);
     virtual std::string name() const;
 };
 
@@ -50,7 +52,7 @@ public:
     Bishop(int x, int y, const char* filename, SDL_Renderer *renderer, std::string team)
      : Piece(x,y,filename,renderer, team) { }
 
-    virtual bool PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos);
+    virtual bool PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos, std::vector<Piece*> pieces);
     virtual std::string name() const;
 };
 
@@ -59,7 +61,7 @@ public:
     Pawn(int x, int y, const char* filename, SDL_Renderer *renderer, std::string team)
      : Piece(x,y,filename,renderer, team) { }
 
-    virtual bool PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos);
+    virtual bool PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos, std::vector<Piece*> pieces);
     virtual std::string name() const;
 };
 
@@ -68,6 +70,6 @@ public:
     Knight(int x, int y, const char* filename, SDL_Renderer *renderer, std::string team)
      : Piece(x,y,filename,renderer, team) { }
 
-    virtual bool PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos);
+    virtual bool PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos, std::vector<Piece*> pieces);
     virtual std::string name() const;
 };

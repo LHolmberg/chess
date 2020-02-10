@@ -44,7 +44,7 @@ int main() {
             {
                 if(isSelected == true)
                 {
-                    if(pieces[TEMP_ID]->PossibleMove(mapgrid, ChangePosTo(mouseX, mouseY)))
+                    if(pieces[TEMP_ID]->PossibleMove(mapgrid, ChangePosTo(mouseX, mouseY),pieces))
                         pieces[TEMP_ID]->ChangePosition(ChangePosTo(mouseX, mouseY).first, ChangePosTo(mouseX, mouseY).second);
                     else
                         printf("wrong move");
