@@ -1,4 +1,10 @@
 #include "System.h"
+#include "Bishop.h"
+#include "King.h"
+#include "Pawn.h"
+#include "Queen.h"
+#include "Rook.h"
+#include "Knight.h"
 #include <iostream>
 #include <vector>
 #include <string>

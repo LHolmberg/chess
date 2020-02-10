@@ -1,8 +1,10 @@
+#pragma once
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <string>
 #include <iostream>
 #include <vector>
+#include <assert.h>
 
 const int W = 600, H = 600; //SCREEN
 
@@ -13,63 +15,14 @@ public:
     std::string team;
 
     void ChangePosition(int x, int y);
+
     Piece(int x, int y, const char* filename, SDL_Renderer *renderer, std::string team);
     
+    std::vector< std::pair<int,int> > GetTravelpath(std::pair<int,int> curpos, std::pair<int,int> newpos);
+    std::pair<int,int> GetCurrentPosition(std::pair<int,int> mapgrid[8][8], int x, int y);
+    bool DidMeet(std::vector<std::pair<int,int> > tpath, std::vector<Piece*> pieces);
+
     virtual bool PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos,
             std::vector<Piece*> pieces) = 0;
     virtual std::string name() const = 0;
-};
-
-class King : public Piece {
-public:
-    King(int x, int y, const char* filename, SDL_Renderer *renderer, std::string team)
-     : Piece(x,y,filename,renderer, team) { }
-
-    virtual bool PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos, std::vector<Piece*> pieces);
-    virtual std::string name() const;
-};
-
-class Queen : public Piece {
-public:
-    Queen(int x, int y, const char* filename, SDL_Renderer *renderer, std::string team)
-     : Piece(x,y,filename,renderer, team) { }
-    
-    virtual bool PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos, std::vector<Piece*> pieces);
-    virtual std::string name() const;
-};
-
-class Rook : public Piece {
-public:
-    Rook(int x, int y, const char* filename, SDL_Renderer *renderer, std::string team)
-     : Piece(x,y,filename,renderer, team) { }
-
-    virtual bool PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos, std::vector<Piece*> pieces);
-    virtual std::string name() const;
-};
-
-class Bishop : public Piece {
-public:
-    Bishop(int x, int y, const char* filename, SDL_Renderer *renderer, std::string team)
-     : Piece(x,y,filename,renderer, team) { }
-
-    virtual bool PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos, std::vector<Piece*> pieces);
-    virtual std::string name() const;
-};
-
-class Pawn : public Piece {
-public:
-    Pawn(int x, int y, const char* filename, SDL_Renderer *renderer, std::string team)
-     : Piece(x,y,filename,renderer, team) { }
-
-    virtual bool PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos, std::vector<Piece*> pieces);
-    virtual std::string name() const;
-};
-
-class Knight : public Piece {
-public:
-    Knight(int x, int y, const char* filename, SDL_Renderer *renderer, std::string team)
-     : Piece(x,y,filename,renderer, team) { }
-
-    virtual bool PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos, std::vector<Piece*> pieces);
-    virtual std::string name() const;
 };
