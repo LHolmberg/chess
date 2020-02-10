@@ -9,12 +9,10 @@ bool Knight::PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> n
 
     int gridX = mapgrid[n][k].first, gridY = mapgrid[n][k].second;
 
-    if(DidMeet(GetTravelpath(std::make_pair(gridX,gridY), newPos), pieces) == false) {
-        if(newPos.first == mapgrid[n][k+1].first || newPos.first == mapgrid[n][k-1].first)
-            return true;
-        else
-            return false;
-    }
+    if(newPos.first == mapgrid[n][k+1].first || newPos.first == mapgrid[n][k-1].first)
+        return true;
+    else
+        return false;
 }
 
 std::string Knight::name() const {
