@@ -1,3 +1,4 @@
+#pragma once
 #include "Board.h"
 #include "Pieces.h"
 #include <vector>

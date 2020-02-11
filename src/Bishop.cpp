@@ -22,6 +22,7 @@ bool Bishop::PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> n
         return false;
     } else
         return false;
+    
 }
 
 std::string Bishop::name() const {
