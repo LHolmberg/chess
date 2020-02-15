@@ -13,11 +13,11 @@
 class Gameplay {
 public:
     std::pair<int,int> mapgrid[8][8];
-    std::vector<Board> board;
-    std::vector<Piece*> pieces;
-    
-    Gameplay(System* sys);
+    std::array<Board, 64> board;
+    std::array<Piece*, 32> pieces;
 
+    Gameplay(System* sys);
+    
     std::pair<int,int> ChangePosTo(int x, int y);
     void SetupMap(SDL_Renderer* renderer);
     void SetupPieces(SDL_Renderer* renderer);

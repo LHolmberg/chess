@@ -1,10 +1,18 @@
 #include "Pieces.h"
 
-bool Piece::CheckPieceAt(int x, int y, std::vector<Piece*> pieces)
+bool Piece::CheckPieceAt(int x, int y, std::array<Piece*, 32> pieces)
 {
     for(int i = 0; i < pieces.size(); i++) {
-        if(x == pieces[i]->square.x && y == pieces[i]->square.y)
-            return false;
+        if(x == pieces[i]->square.x && y == pieces[i]->square.y){
+            if(pieces[i]->team != this->team) {
+                //SDL_DestroyTexture(pieces[i]->sprite);
+                pieces[i]->square.x = H * 2;
+                pieces[i]->square.y = H * 2;
+                return true;//return false;
+            }
+            else 
+                return false;
+        }
     }
     return true;
 }
@@ -25,7 +33,7 @@ std::vector< std::pair<int,int> > Piece::GetTravelpath(std::pair<int,int> curpos
         boardsMovedDiagonal = abs((cY - nY) / (H/8));
 
     int xTravel = cX;
-    for(int i = 0; i < abs(boardsMovedX);i++) {
+    for(int i = 0; i < abs(boardsMovedX)-1;i++) {
         if(boardsMovedX < 0) {
             xTravel += H/8; //one board piece
             retval.push_back(std::make_pair(xTravel, cY));
@@ -37,7 +45,7 @@ std::vector< std::pair<int,int> > Piece::GetTravelpath(std::pair<int,int> curpos
     } 
 
     int yTravel = cY;
-    for(int i = 0; i < abs(boardsMovedY);i++) {
+    for(int i = 0; i < abs(boardsMovedY)-1;i++) {
         if(boardsMovedY < 0) {
             yTravel += H/8;
             retval.push_back(std::make_pair(cX, yTravel)); 
@@ -49,7 +57,7 @@ std::vector< std::pair<int,int> > Piece::GetTravelpath(std::pair<int,int> curpos
     }
     
     int diaTravelX = cX, diaTravelY = cY;
-    for(int i = 0; i < boardsMovedDiagonal; i++) {
+    for(int i = 0; i < boardsMovedDiagonal-1; i++) {
         if((cY - nY) / (H/8) > 0 && (cX - nX) / (H/8) > 0) {
             diaTravelX -= H/8;
             diaTravelY -= H/8;
@@ -85,7 +93,7 @@ std::pair<int,int> Piece::GetCurrentPosition(std::pair<int,int> mapgrid[8][8], i
     }
 }
 
-bool Piece::DidMeet(std::vector<std::pair<int,int> > tpath, std::vector<Piece*> pieces)
+bool Piece::DidMeet(std::vector<std::pair<int,int> > tpath, std::array<Piece*, 32> pieces)
 {   
     for(int i = 0; i < pieces.size(); i++)
     {

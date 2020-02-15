@@ -1,6 +1,6 @@
 #include "Knight.h"
 
-bool Knight::PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos, std::vector<Piece*> pieces) {
+bool Knight::PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos, std::array<Piece*, 32> pieces) {
     int x = square.x;
     int y = square.y;
 
@@ -11,9 +11,10 @@ bool Knight::PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> n
 
     int dx = abs((gridX - newPos.first) / (H/8));
     int dy = abs((gridY - newPos.second) / (H/8));
-
-    if(dx == 1 && dy == 2 || dx == 2 && dy == 1)
-        return true;
+    if(dx == 1 && dy == 2 || dx == 2 && dy == 1) {
+        if(CheckPieceAt(newPos.first, newPos.second, pieces) == true)
+            return true;
+    }
     return false;
 }
 

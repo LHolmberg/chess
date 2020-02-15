@@ -17,6 +17,6 @@ public:
     ~System();
 
     void Startup();
-    void Render(std::vector<Board> b, std::vector<Piece*> p);
+    void Render(std::array<Board, 64> b, std::array<Piece*, 32> p);
 
 };

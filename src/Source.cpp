@@ -50,7 +50,7 @@ int main() {
 
     for(auto p : gp.pieces) 
         delete p;
-    gp.pieces.clear();
+    // std::fill_n(gp.pieces, gp.pieces.size(), 0);
 
     return 0;
 }

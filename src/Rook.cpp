@@ -1,6 +1,6 @@
 #include "Rook.h"
 
-bool Rook::PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos, std::vector<Piece*> pieces) {
+bool Rook::PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos, std::array<Piece*, 32> pieces) {
     int x = square.x;
     int y = square.y;
 
@@ -8,9 +8,11 @@ bool Rook::PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> new
     int n = curPos.first, k = curPos.second;
     int gridX = mapgrid[n][k].first, gridY = mapgrid[n][k].second;
     
-    if(DidMeet(GetTravelpath(std::make_pair(gridX,gridY), newPos), pieces) == false && CheckPieceAt(newPos.first, newPos.second, pieces) == true) {
-        if(newPos.second == mapgrid[n][k].second || newPos.first == mapgrid[n][k].first)
-            return true;
+    if(DidMeet(GetTravelpath(std::make_pair(gridX,gridY), newPos), pieces) == false) {
+            if(newPos.second == mapgrid[n][k].second || newPos.first == mapgrid[n][k].first) {
+                if(CheckPieceAt(newPos.first, newPos.second, pieces) == true) 
+                    return true;
+            }
     }
     return false;
 }

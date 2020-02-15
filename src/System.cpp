@@ -20,7 +20,7 @@ void System::Startup() {
     this->backbuffer = SDL_GetWindowSurface(this->window);
 }
 
-void System::Render(std::vector<Board> b, std::vector<Piece*> p) {
+void System::Render(std::array<Board, 64> b, std::array<Piece*, 32> p) {
     SDL_RenderClear(this->renderer);
     for(int i = 0; i < b.size(); i++)
         SDL_RenderCopy(this->renderer, b[i].sprite, NULL, &b[i].square);
