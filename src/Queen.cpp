@@ -13,7 +13,7 @@ bool Queen::PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> ne
     //any diagonal and straight up/down/sidetoside = OK
     int gridX = mapgrid[n][k].first, gridY = mapgrid[n][k].second;
 
-    if(DidMeet(GetTravelpath(std::make_pair(gridX,gridY), newPos), pieces) == false) {
+    if(DidMeet(GetTravelpath(std::make_pair(gridX,gridY), newPos), pieces) == false && CheckPieceAt(newPos.first, newPos.second, pieces) == true) {
         for(int i = 0; i < 8; i++) {
             if(newPos.second == mapgrid[n][k].second || newPos.first == mapgrid[n][k].first
                 || newPos.second == mapgrid[i][k].second && dx == dy

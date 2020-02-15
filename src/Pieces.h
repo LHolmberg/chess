@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <assert.h>
+#include "Board.h"
 
 const int W = 600, H = 600; //SCREEN
 
@@ -18,6 +19,7 @@ public:
 
     Piece(int x, int y, const char* filename, SDL_Renderer *renderer, std::string team);
     
+    bool CheckPieceAt(int x, int y, std::vector<Piece*> pieces);
     std::vector< std::pair<int,int> > GetTravelpath(std::pair<int,int> curpos, std::pair<int,int> newpos);
     std::pair<int,int> GetCurrentPosition(std::pair<int,int> mapgrid[8][8], int x, int y);
     bool DidMeet(std::vector<std::pair<int,int> > tpath, std::vector<Piece*> pieces);

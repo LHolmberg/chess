@@ -1,5 +1,13 @@
 #include "Pieces.h"
 
+bool Piece::CheckPieceAt(int x, int y, std::vector<Piece*> pieces)
+{
+    for(int i = 0; i < pieces.size(); i++) {
+        if(x == pieces[i]->square.x && y == pieces[i]->square.y)
+            return false;
+    }
+    return true;
+}
 
 std::vector< std::pair<int,int> > Piece::GetTravelpath(std::pair<int,int> curpos, std::pair<int,int> newpos)
 {
@@ -17,56 +25,50 @@ std::vector< std::pair<int,int> > Piece::GetTravelpath(std::pair<int,int> curpos
         boardsMovedDiagonal = abs((cY - nY) / (H/8));
 
     int xTravel = cX;
-    if(boardsMovedX != 0) {
-        for(int i = 0; i < abs(boardsMovedX);i++) {
-            if(boardsMovedX < 0) {
-                xTravel += H/8; //one board piece
-                retval.push_back(std::make_pair(xTravel, cY));
-            }
-            else{
-                xTravel -= H/8;
-                retval.push_back(std::make_pair(xTravel, cY));
-            } 
+    for(int i = 0; i < abs(boardsMovedX);i++) {
+        if(boardsMovedX < 0) {
+            xTravel += H/8; //one board piece
+            retval.push_back(std::make_pair(xTravel, cY));
+        }
+        else{
+            xTravel -= H/8;
+            retval.push_back(std::make_pair(xTravel, cY));
         } 
-    }
+    } 
 
     int yTravel = cY;
-    if(boardsMovedY != 0) {
-        for(int i = 0; i < abs(boardsMovedY);i++) {
-            if(boardsMovedY < 0) {
-                yTravel += H/8;
-                retval.push_back(std::make_pair(cY, yTravel)); 
-            }
-            else {
-                yTravel -= H/8;
-                retval.push_back(std::make_pair(cY, yTravel));
-            }
+    for(int i = 0; i < abs(boardsMovedY);i++) {
+        if(boardsMovedY < 0) {
+            yTravel += H/8;
+            retval.push_back(std::make_pair(cX, yTravel)); 
+        }
+        else {
+            yTravel -= H/8;
+            retval.push_back(std::make_pair(cX, yTravel));
         }
     }
     
     int diaTravelX = cX, diaTravelY = cY;
-    if(boardsMovedDiagonal != 0) {
-        for(int i = 0; i < boardsMovedDiagonal; i++) {
-            if((cY - nY) / (H/8) > 0 && (cX - nX) / (H/8) > 0) {
-                diaTravelX -= H/8;
-                diaTravelY -= H/8;
-                retval.push_back(std::make_pair(diaTravelX, diaTravelY));
-            }
-            if((cY - nY) / (H/8) < 0 && (cX - nX) / (H/8) < 0) {
-                diaTravelX += H/8;
-                diaTravelY += H/8;
-                retval.push_back(std::make_pair(diaTravelX, diaTravelY));
-            }
-            if((cY - nY) / (H/8) > 0 && (cX - nX) / (H/8) < 0) {
-                diaTravelX += H/8;
-                diaTravelY -= H/8;
-                retval.push_back(std::make_pair(diaTravelX, diaTravelY));
-            }
-            if((cY - nY) / (H/8) < 0 && (cX - nX) / (H/8) > 0) {
-                diaTravelX -= H/8;
-                diaTravelY += H/8;
-                retval.push_back(std::make_pair(diaTravelX,diaTravelY));
-            }
+    for(int i = 0; i < boardsMovedDiagonal; i++) {
+        if((cY - nY) / (H/8) > 0 && (cX - nX) / (H/8) > 0) {
+            diaTravelX -= H/8;
+            diaTravelY -= H/8;
+            retval.push_back(std::make_pair(diaTravelX, diaTravelY));
+        }
+        if((cY - nY) / (H/8) < 0 && (cX - nX) / (H/8) < 0) {
+            diaTravelX += H/8;
+            diaTravelY += H/8;
+            retval.push_back(std::make_pair(diaTravelX, diaTravelY));
+        }
+        if((cY - nY) / (H/8) > 0 && (cX - nX) / (H/8) < 0) {
+            diaTravelX += H/8;
+            diaTravelY -= H/8;
+            retval.push_back(std::make_pair(diaTravelX, diaTravelY));
+        }
+        if((cY - nY) / (H/8) < 0 && (cX - nX) / (H/8) > 0) {
+            diaTravelX -= H/8;
+            diaTravelY += H/8;
+            retval.push_back(std::make_pair(diaTravelX,diaTravelY));
         }
     }
     return retval;
@@ -84,13 +86,10 @@ std::pair<int,int> Piece::GetCurrentPosition(std::pair<int,int> mapgrid[8][8], i
 }
 
 bool Piece::DidMeet(std::vector<std::pair<int,int> > tpath, std::vector<Piece*> pieces)
-{
-    if(tpath.size() == 0)
-        return true;
-    
-    for(auto p : pieces)
+{   
+    for(int i = 0; i < pieces.size(); i++)
     {
-        if(std::find(tpath.begin(), tpath.end(), std::make_pair(p->square.x, p->square.y)) != tpath.end())
+        if(std::find(tpath.begin(), tpath.end(), std::make_pair(pieces[i]->square.x, pieces[i]->square.y)) != tpath.end())
             return true; 
     }
     return false;
