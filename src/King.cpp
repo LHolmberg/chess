@@ -12,9 +12,8 @@ bool King::PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> new
         if(newPos.second == mapgrid[n + 1][k].second || newPos.second == mapgrid[n - 1][k].second
         || newPos.first == mapgrid[n][k+1].first || newPos.first == mapgrid[n][k-1].first)
             return true;
-        else
-            return false;
     }
+    return false;
 }
 
 std::string King::name() const {

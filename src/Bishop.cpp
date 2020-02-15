@@ -19,9 +19,8 @@ bool Bishop::PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> n
                         || newPos.first == mapgrid[n][i].first && dx == dy)
                 return true;
         }
-        return false;
-    } else
-        return false;
+    } 
+    return false;
     
 }
 

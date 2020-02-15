@@ -23,9 +23,8 @@ bool Queen::PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> ne
                 return true;
 
         }
-        return false;
-    } else 
-        return false;
+    } 
+    return false;
 }
 
 std::string Queen::name() const {

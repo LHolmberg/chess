@@ -11,10 +11,8 @@ bool Rook::PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> new
     if(DidMeet(GetTravelpath(std::make_pair(gridX,gridY), newPos), pieces) == false && CheckPieceAt(newPos.first, newPos.second, pieces) == true) {
         if(newPos.second == mapgrid[n][k].second || newPos.first == mapgrid[n][k].first)
             return true;
-        else    
-            return false;
-    } else
-        return false;
+    }
+    return false;
 }
 
 

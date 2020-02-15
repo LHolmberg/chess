@@ -12,16 +12,12 @@ bool Pawn::PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> new
         if(this->team == "BLACK") {
             if(newPos.second == mapgrid[n-1][k].second && newPos.first == mapgrid[n][k].first)
                 return true;
-            else
-            return false;
         } else {
             if(newPos.second == mapgrid[n+1][k].second && newPos.first == mapgrid[n][k].first)
                 return true;
-            else
-                return false;
         }
-    } else
-        return false;
+    }
+    return false;
 }
 
 std::string Pawn::name() const {
