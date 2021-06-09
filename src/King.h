@@ -1,11 +1,12 @@
 #pragma once
 #include "Pieces.h"
 
-class King : public Piece {
+class King : public Piece
+{
 public:
-    King(int x, int y, const char* filename, SDL_Renderer *renderer, std::string team)
-     : Piece(x,y,filename,renderer, team) { }
+    King(int x, int y, const char *filename, SDL_Renderer *renderer, std::string team)
+        : Piece(x, y, filename, renderer, team) {}
 
-    virtual bool PossibleMove(std::pair<int,int> mapgrid[8][8], std::pair<int,int> newPos, std::array<Piece*, 32> pieces);
+    virtual bool PossibleMove(std::pair<int, int> mapgrid[8][8], std::pair<int, int> newPos, std::array<Piece *, 32> pieces);
     virtual std::string name() const;
 };
